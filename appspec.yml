@@ -4,6 +4,10 @@ files:
   - source: /build
     destination: /var/www/reactapp  # Directory on EC2 where the app will be deployed
 hooks:
+  BeforeInstall:
+    - location: scripts/stop_server.sh   # Stop the web server (e.g., Nginx or Apache) if running
+    - timeout: 120
+    - runas: root
   AfterInstall:
     - location: scripts/install_dependencies.sh
     - timeout: 120
