@@ -1,18 +1,22 @@
 version: 0.0
 os: linux
 files:
-  - source: /build
-    destination: /var/www/reactapp  # Directory on EC2 where the app will be deployed
+  # Copy everything to the EC2 instance (or adjust source if needed)
+  - source: /build/
+    destination: /var/www/html/
+
 hooks:
   BeforeInstall:
-    - location: scripts/stop_server.sh   # Stop the web server (e.g., Nginx or Apache) if running
-    - timeout: 120
-    - runas: root
+    - location: scripts/install_apache.sh
+      timeout: 120
+      runas: ec2-user
+
   AfterInstall:
-    - location: scripts/install_dependencies.sh
-    - timeout: 120
-    - runas: root
+    - location: scripts/deploy_react.sh
+      timeout: 120
+      runas: ec2-user
+
   ApplicationStart:
-    - location: scripts/start_server.sh
-    - timeout: 120
-    - runas: root
+    - location: scripts/start_apache.sh
+      timeout: 120
+      runas: ec2-user
