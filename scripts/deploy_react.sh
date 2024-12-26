@@ -11,6 +11,8 @@ then
     exit 1
 fi
 
+npm install
+
 # Ensure the build directory exists
 if [ ! -d "build" ]; then
   echo "Build directory not found. Something went wrong with the build process."
