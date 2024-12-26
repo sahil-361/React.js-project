@@ -16,7 +16,9 @@ sudo amazon-linux-extras enable nodejs16
 # Install Node.js and npm
 sudo yum install -y nodejs
 
+
 # Verify Node.js and npm installation
 node -v
 npm -v
 
+npm install react-scripts --save
