@@ -10,15 +10,28 @@ sudo yum install -y httpd
 # Enable Apache to start on boot
 sudo systemctl enable httpd
 
-# Enable the Node.js repository (Amazon Linux Extras)
-sudo amazon-linux-extras enable nodejs16
+# Start Apache service
+sudo systemctl start httpd
 
-# Install Node.js and npm
+# Install Node.js and npm (Amazon Linux 2023 package)
 sudo yum install -y nodejs
-
 
 # Verify Node.js and npm installation
 node -v
 npm -v
 
-npm install react-scripts --save
+# Clear npm cache (to avoid potential errors with idealTree)
+sudo npm cache clean --force
+
+# Install react-scripts if not installed (if required for your React app)
+sudo npm install react-scripts --save
+
+# (Optional) Navigate to your React app directory if required and install dependencies
+# cd /path/to/your/react-app
+# sudo npm install
+
+# Optionally, you can also run npm install in case it's needed
+# npm install
+
+# Print message indicating successful installation
+echo "Apache and Node.js installation complete!"
