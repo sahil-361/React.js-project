@@ -7,16 +7,16 @@ files:
 
 hooks:
   BeforeInstall:
-    - location: scripts/install_apache.sh
-      timeout: 120
+    - location: scripts/before_install.sh
+      timeout: 300
       runas: root
 
   AfterInstall:
-    - location: scripts/deploy_react.sh
+    - location: scripts/after_install.sh
       timeout: 300
       runas: root
 
   ApplicationStart:
-    - location: scripts/start_apache.sh
-      timeout: 120
+    - location: scripts/app_start.sh
+      timeout: 300
       runas: root

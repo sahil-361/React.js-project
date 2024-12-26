@@ -11,14 +11,17 @@ then
     exit 1
 fi
 
-#sudo rm -rf node_modules
+sudo rm -rf node_modules
+sudo rm -rf build
 #sudo rm package-lock.json
 
 # Clear npm cache (to avoid potential errors with idealTree)
 #sudo npm cache clean 
 
 # Install react-scripts if not installed (if required for your React app)
-#sudo npm install 
+sudo npm install 
+
+sudo npm run build
 
 # Ensure the build directory exists
 if [ ! -d "build" ]; then
@@ -27,7 +30,7 @@ if [ ! -d "build" ]; then
 fi
 
 # Copy the React build to the Apache web root
-sudo cp -r build/*  /home/ec2-user/my-react-app
+#sudo cp -r build/*  /home/ec2-user/my-react-app
 
 # Give proper permissions to Apache
-sudo chown -R apache:apache /home/ec2-user/my-react-app
+#sudo chown -R apache:apache /home/ec2-user/my-react-app

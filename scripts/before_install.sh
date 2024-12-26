@@ -13,9 +13,14 @@ sudo systemctl enable httpd
 # Start Apache service
 sudo systemctl start httpd
 
+sudo yum update
+
 # Install Node.js and npm (Amazon Linux 2023 package)
 sudo yum install -y nodejs
 
+sudo yum install -y npm 
+
+sudo yum install -g pm2
 # Verify Node.js and npm installation
 node -v
 npm -v
