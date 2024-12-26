@@ -19,7 +19,7 @@ sudo rm -rf build
 #sudo npm cache clean 
 
 # Install react-scripts if not installed (if required for your React app)
-# npm install 
+npm install 
 
 sudo npm run build
 
