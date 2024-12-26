@@ -20,11 +20,6 @@ sudo yum install -y nodejs
 node -v
 npm -v
 
-# Clear npm cache (to avoid potential errors with idealTree)
-sudo npm cache clean --force
-
-# Install react-scripts if not installed (if required for your React app)
-sudo npm install react-scripts --save
 
 # (Optional) Navigate to your React app directory if required and install dependencies
 # cd /path/to/your/react-app

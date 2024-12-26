@@ -11,7 +11,14 @@ then
     exit 1
 fi
 
-npm install
+sudo rm -rf node_modules
+sudo rm package-lock.json
+
+# Clear npm cache (to avoid potential errors with idealTree)
+sudo npm cache clean --force
+
+# Install react-scripts if not installed (if required for your React app)
+sudo npm install --force
 
 # Ensure the build directory exists
 if [ ! -d "build" ]; then
