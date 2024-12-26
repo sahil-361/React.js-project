@@ -18,7 +18,7 @@ if [ ! -d "build" ]; then
 fi
 
 # Copy the React build to the Apache web root
-sudo cp -r build/*  home/ec2-user/my-react-app
+sudo cp -r build/*  /home/ec2-user/my-react-app
 
 # Give proper permissions to Apache
-sudo chown -R apache:apache home/ec2-user/my-react-app
+sudo chown -R apache:apache /home/ec2-user/my-react-app
