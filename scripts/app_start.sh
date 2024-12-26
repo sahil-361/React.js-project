@@ -10,6 +10,4 @@ sudo systemctl status httpd
 #!/bin/bash
 cd /home/ec2-user/my-react-app
 
-pm2 delete all
-
-pm2 start "npm start"  # Or use pm2 to run your React app in the background
+npm run start  # Or use pm2 to run your React app in the background
