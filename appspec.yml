@@ -2,8 +2,8 @@ version: 0.0
 os: linux
 files:
   # Copy everything to the EC2 instance (or adjust source if needed)
-  - source: /build/
-    destination: /var/www/html/
+  - source: /
+    destination: /home/ec2-user/my-react-app
 
 hooks:
   BeforeInstall:

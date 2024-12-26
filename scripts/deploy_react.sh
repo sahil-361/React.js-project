@@ -11,12 +11,6 @@ then
     exit 1
 fi
 
-# Install dependencies
-npm install
-
-# Build the React app
-npm run build
-
 # Ensure the build directory exists
 if [ ! -d "build" ]; then
   echo "Build directory not found. Something went wrong with the build process."
@@ -24,7 +18,7 @@ if [ ! -d "build" ]; then
 fi
 
 # Copy the React build to the Apache web root
-sudo cp -r build/* /var/www/html/
+sudo cp -r build/*  home/ec2-user/my-react-app
 
 # Give proper permissions to Apache
-sudo chown -R apache:apache /var/www/html/
+sudo chown -R apache:apache home/ec2-user/my-react-app
