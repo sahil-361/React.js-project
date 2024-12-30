@@ -1,0 +1,22 @@
+version: 0.0
+os: linux
+files:
+  # Copy everything to the EC2 instance (or adjust source if needed)
+  - source: /
+    destination: /home/ec2-user/my-react-app
+
+hooks:
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 300
+      runas: root
+
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 500
+      runas: root
+
+  ApplicationStart:
+    - location: scripts/app_start.sh
+      timeout: 300
+      runas: root
