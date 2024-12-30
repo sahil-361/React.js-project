@@ -17,7 +17,6 @@ export default class Customers extends Component {
     this.getCustomerData();
   }
 
-  // Function to get the Customer Data from json
   getCustomerData() {
     axios.get('assets/samplejson/customerlist.json').then(response => {
       this.setState({ customerList: response.data }); // Correct data access

@@ -17,7 +17,6 @@ export default class CustomerDetails extends Component {
 
   // Function which is called whenever the component is updated
   componentDidUpdate(prevProps) {
-    // Get Customer Details only if props have changed
     if (this.props.val !== prevProps.val) {
       this.getCustomerDetails(this.props.val);
     }
