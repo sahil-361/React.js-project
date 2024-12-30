@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import Panel from 'react-bootstrap/lib/Panel'
-import axios from 'axios'
+import React, { Component } from 'react';
+import { Card } from 'react-bootstrap'; // Updated import for v5
+import axios from 'axios';
 
-//This Component is a child Component of Customers Component
+// This Component is a child Component of Customers Component
 export default class CustomerDetails extends Component {
 
   constructor(props) {
@@ -10,47 +10,50 @@ export default class CustomerDetails extends Component {
     this.state = {}
   }
 
-  //Function which is called when the component loads for the first time
+  // Function which is called when the component loads for the first time
   componentDidMount() {
-    this.getCustomerDetails(this.props.val)
+    this.getCustomerDetails(this.props.val);
   }
 
-  //Function which is called whenver the component is updated
+  // Function which is called whenever the component is updated
   componentDidUpdate(prevProps) {
-
-    //get Customer Details only if props has changed
+    // Get Customer Details only if props have changed
     if (this.props.val !== prevProps.val) {
-      this.getCustomerDetails(this.props.val)
+      this.getCustomerDetails(this.props.val);
     }
   }
 
-  //Function to Load the customerdetails data from json.
+  // Function to load the customer details data from JSON
   getCustomerDetails(id) {
-    axios.get('assets/samplejson/customer' + id + '.json').then(response => {
-      this.setState({customerDetails: response})
-    })
-  };
+    axios.get(`assets/samplejson/customer${id}.json`).then(response => {
+      this.setState({ customerDetails: response });
+    });
+  }
 
   render() {
-    if (!this.state.customerDetails)
-      return (<p>Loading Data</p>)
-    return (<div className="customerdetails">
-      <Panel bsStyle="info" className="centeralign">
-        <Panel.Heading>
-          <Panel.Title componentClass="h3">{this.state.customerDetails.data.name}</Panel.Title>
-        </Panel.Heading>
-        <Panel.Body>
-          <p>Name : {this.state.customerDetails.data.name}</p>
-          <p>Email : {this.state.customerDetails.data.email}</p>
-          <p>Phone : {this.state.customerDetails.data.phone}</p>
-          <p>City : {this.state.customerDetails.data.city}</p>
-          <p>State : {this.state.customerDetails.data.state}</p>
-          <p>Country : {this.state.customerDetails.data.country}</p>
-          <p>Organization : {this.state.customerDetails.data.organization}</p>
-          <p>Job Profile : {this.state.customerDetails.data.jobProfile}</p>
-          <p>Additional Info : {this.state.customerDetails.data.additionalInfo}</p>
-        </Panel.Body>
-      </Panel>
-    </div>)
+    if (!this.state.customerDetails) {
+      return (<p>Loading Data...</p>);
+    }
+
+    const { customerDetails } = this.state;
+
+    return (
+      <div className="customerdetails">
+        <Card className="centeralign" bg="info" text="white">
+          <Card.Header as="h3">{customerDetails.data.name}</Card.Header> {/* Replaced Panel.Heading */}
+          <Card.Body>
+            <p>Name: {customerDetails.data.name}</p>
+            <p>Email: {customerDetails.data.email}</p>
+            <p>Phone: {customerDetails.data.phone}</p>
+            <p>City: {customerDetails.data.city}</p>
+            <p>State: {customerDetails.data.state}</p>
+            <p>Country: {customerDetails.data.country}</p>
+            <p>Organization: {customerDetails.data.organization}</p>
+            <p>Job Profile: {customerDetails.data.jobProfile}</p>
+            <p>Additional Info: {customerDetails.data.additionalInfo}</p>
+          </Card.Body>
+        </Card>
+      </div>
+    );
   }
 }
