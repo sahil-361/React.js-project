@@ -1,6 +1,10 @@
 #!/bin/bash
 # start_apache.sh
 
+# Enable Apache to start on boot
+sudo systemctl enable httpd
+
+sudo yum update
 # Start Apache service
 sudo systemctl start httpd
 

@@ -1,22 +1,32 @@
 version: 0.0
 os: linux
 files:
-  # Copy everything to the EC2 instance (or adjust source if needed)
+  # The source directory (e.g., build/) from CodeBuild
+  # should be copied to the Apache web server root
   - source: /
-    destination: /home/ec2-user/my-react-app
+    destination: /home/ec2-user/my-react-app  # Apache's default directory for static content
 
 hooks:
+  # BeforeInstall - Clean the previous application if needed
   BeforeInstall:
-    - location: scripts/before_install.sh
-      timeout: 300
+    - location: scripts/clean_previous_build.sh  # Optional: Script to clean old files
+      timeout: 180
       runas: root
 
+  # AfterInstall - Perform any additional tasks such as installing dependencies
   AfterInstall:
-    - location: scripts/after_install.sh
-      timeout: 600
+    - location: scripts/install_dependencies.sh  # Optional: Install dependencies (like npm or node)
+      timeout: 180
       runas: root
 
+  # ApplicationStart - Start the Apache server or perform post-install tasks
   ApplicationStart:
-    - location: scripts/app_start.sh
-      timeout: 300
+    - location: scripts/start_apache.sh  # Start Apache to serve the app
+      timeout: 180
+      runas: root
+
+  # ApplicationStop - Stop the Apache server or clean up
+  ApplicationStop:
+    - location: scripts/stop_apache.sh  # Stop Apache if it is running
+      timeout: 180
       runas: root
