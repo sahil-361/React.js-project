@@ -1,6 +1,8 @@
 #!/bin/bash
 # deploy_react.sh
 
+sudo chown -R ec2-user:ec2-user /home/ec2-user/my-react-app/
+
 # Navigate to the project folder
 cd /home/ec2-user/my-react-app
 
@@ -19,7 +21,7 @@ sudo rm -rf build
 #sudo npm cache clean 
 
 # Install react-scripts if not installed (if required for your React app)
-npm install 
+npm install --verbose
 
 sudo npm run build
 
